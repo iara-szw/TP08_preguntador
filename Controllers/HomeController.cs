@@ -31,10 +31,12 @@ public IActionResult Jugar(){
         ViewBag.pregunta=Juego.ObtenerProximaPregunta().enunciado;
         ViewBag.respuestas=Juego.ObtenerProximasRespuestas(ViewBag.pregunta.idPregunta);
     }
+    return RedirectToAction("Jugar");
 } 
 
 [HttpPost] public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
     ViewBag.respuesta=Juego.VerificarRespuesta(idRespuesta);
     ViewBag.correcta=Juego.ObtenerCorrecta();
+    return RedirectToAction("Jugar");
 }
 }
