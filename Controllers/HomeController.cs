@@ -6,15 +6,35 @@ namespace TP08_PreguntadOrt.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
-    public IActionResult Index()
-    {
+    public IActionResult Index(){
         return View();
     }
+
+public IActionResult ConfigurarJuego(){
+    ViewBag.cate=Juego.ObtenerCategorias();
+        ViewBag.dif=Juego.ObtenerDificultades();
+        return View();
+
+}
+
+public IActionResult Comenzar(string username, int dificultad, int categoria){
+    Juego.CargarPartida(username,dificultad,categoria);
+    return RedirectToAction("Jugar");
+}
+
+public IActionResult Jugar(){
+    ViewBag.username=Juego.username;
+    
+    if(Juego.ObtenerProximaPregunta()==null){
+        return RedirectToAction("fin");
+    }else{
+        ViewBag.pregunta=Juego.ObtenerProximaPregunta().enunciado;
+        ViewBag.respuestas=Juego.ObtenerProximasRespuestas(ViewBag.pregunta.idPregunta);
+    }
+} 
+
+[HttpPost] public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
+    ViewBag.respuesta=Juego.VerificarRespuesta(idRespuesta);
+    ViewBag.correcta=Juego.ObtenerCorrecta();
+}
 }

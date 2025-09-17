@@ -24,14 +24,40 @@ static class Juego{
         return BD.levantarDificultades();
     }
 
-}
+    static void CargarPartida(string Username, int dificultad, int categoria){
+        InicializarJuego();
+        username=Username;
+        ListaPreguntas=BD.levantarPreguntas(dificultad, categoria);
+    }
+    static Pregunta ObtenerProximaPregunta(){
+        if(ContadorNroPreguntaActual>=ListaPreguntas.length()){
+            PreguntaActual=null;
+        }else{
+        PreguntaActual=ListaPreguntas[ContadorNroPreguntaActual];
 
+        }
+        return PreguntaActual;
+    }
+    static List<Respuesta> ObtenerProximasRespuestas(int idPregunta){
+        ListaRespuestas=BD.ObtenerRespuestas(idPregunta);
+        return ListaRespuestas;
+    }
+    static private int ObtenerCorrecta(){
+        foreach(ListaRespuestas){
+            if (ListadoRespuestas.correcta==true){
+                return ListadoRespuestas[i];
+            }
+        }
+    }
+    static bool VerificarRespuesta(int idrespuesta){
+        bool eraCorrecta=false;
+        if(ObtenerCorrecta().idRespuesta==idrespuesta){
+            eraCorrecta=true;
+            CantidadPreguntasCorrectas++;
+            puntajeActual=puntajeActual+100;
+        }
+        ContadorNroPreguntaActual++;
+        PreguntaActual=ListaPreguntas[ContadorNroPreguntaActual];
+        return eraCorrecta
+    }
 
-// ObtenerCategorias(): Retorna la lista de categorías.
-// ObtenerDificultades(): Retorna la lista de dificultades.
-// CargarPartida(string username, int dificultad, int categoria): Debe llamar al método InicializarJuego. Además recibe la dificultad y categoría elegidas e invoca al método ObtenerPreguntas de BD.
-// ObtenerProximaPregunta(): Retorna la siguiente pregunta de la lista de preguntas del juego.
-// ObtenerProximasRespuestas(int idPregunta): Retorna la lista con todas las respuestas relacionadas al id de pregunta enviado por parámetro.
-// VerificarRespuesta(int idRespuesta): Recibe un id de respuesta y retorna un booleano indicando si la respuesta fue correcta o incorrecta verificando en el ListadoRespuestas. Previo a devolver el booleano realiza dos acciones:
-// Si la respuesta del usuario fue correcta, suma una cantidad específica de puntos a PuntajeActual (la definen ustedes) y suma 1 respuesta correcta en CantidadPreguntasCorrectas.
-// Independientemente de que este bien o mal la respuesta, Incrementa el contador de ContadorNroPreguntaActual y asigna la siguiente pregunta de la ListaPreguntas a PreguntaActual.
