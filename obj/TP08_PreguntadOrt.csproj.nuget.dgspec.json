@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\49193480\\Downloads\\TP08\\TP08_PreguntadOrt\\TP08_PreguntadOrt.csproj": {}
+    "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\TP08_PreguntadOrt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\49193480\\Downloads\\TP08\\TP08_PreguntadOrt\\TP08_PreguntadOrt.csproj": {
+    "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\TP08_PreguntadOrt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\49193480\\Downloads\\TP08\\TP08_PreguntadOrt\\TP08_PreguntadOrt.csproj",
+        "projectUniqueName": "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\TP08_PreguntadOrt.csproj",
         "projectName": "TP08_PreguntadOrt",
-        "projectPath": "C:\\Users\\49193480\\Downloads\\TP08\\TP08_PreguntadOrt\\TP08_PreguntadOrt.csproj",
+        "projectPath": "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\TP08_PreguntadOrt.csproj",
         "packagesPath": "C:\\Users\\49193480\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\49193480\\Downloads\\TP08\\TP08_PreguntadOrt\\obj\\",
+        "outputPath": "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

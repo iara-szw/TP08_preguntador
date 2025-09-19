@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Index";
+}
+<body>
+<main>
+<p>hola @ViewBag.username</p>
+
+<h2>@ViewBag.pregunta.enunciado</h2>
+@if(ViewBag.pregunta.foto != null){
+    <img src="img/ViewBag.pregunta.foto">
+}
+<form action='@Url.Action("VerificarRespuesta")' method="post">
+@foreach(Respuesta respuesta in ViewBag.respuestas){
+    <input type="radio" id="respuesta.Opcion" name="idRespuesta" value="respuesta.contenido">
+        <label for="respuesta.Opcion">
+         @if(respuesta.fotoRes != null){
+        <img src="img/respuesta.fotoRes">
+        }
+        </label><br>
+  
+
+}
+<input type="hidden" name="idPregunta" value="@ViewBag.pregunta.idPregunta">
+<input type="submit">
+</form>
+</main>
+
+</body>

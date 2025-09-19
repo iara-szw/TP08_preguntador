@@ -1,6 +1,6 @@
-static class Juego{
-    static private string username;
-   static private int puntajeActual;
+static public class Juego{
+    static public  string username;
+   static public int puntajeActual;
    static private int CantidadPreguntasCorrectas;
    static private int ContadorNroPreguntaActual;
   static private Pregunta PreguntaActual;
@@ -17,20 +17,20 @@ static class Juego{
         ListaRespuestas=new List<Respuesta>();
     }
 
-    static List<Categoria> ObtenerCategorias(){
+    static public List<Categoria> ObtenerCategorias(){
         return BD.levantarCategorias();
     }
-      static List<Dificultad> ObtenerDificultades(){
+      static public List<Dificultad> ObtenerDificultades(){
         return BD.levantarDificultades();
     }
 
-    static void CargarPartida(string Username, int dificultad, int categoria){
+    static public void CargarPartida(string Username, int dificultad, int categoria){
         InicializarJuego();
         username=Username;
         ListaPreguntas=BD.levantarPreguntas(dificultad, categoria);
     }
-    static Pregunta ObtenerProximaPregunta(){
-        if(ContadorNroPreguntaActual>=ListaPreguntas.length()){
+    static public Pregunta ObtenerProximaPregunta(){
+        if(ContadorNroPreguntaActual>=ListaPreguntas.Count()){
             PreguntaActual=null;
         }else{
         PreguntaActual=ListaPreguntas[ContadorNroPreguntaActual];
@@ -38,18 +38,20 @@ static class Juego{
         }
         return PreguntaActual;
     }
-    static List<Respuesta> ObtenerProximasRespuestas(int idPregunta){
+    static public List<Respuesta> ObtenerProximasRespuestas(int idPregunta){
         ListaRespuestas=BD.ObtenerRespuestas(idPregunta);
         return ListaRespuestas;
     }
-    static private int ObtenerCorrecta(){
-        foreach(ListaRespuestas){
-            if (ListadoRespuestas.correcta==true){
-                return ListadoRespuestas[i];
+    static public Respuesta ObtenerCorrecta(){
+
+        foreach(Respuesta res in ListaRespuestas){
+            if (res.correcta==true){
+                return res;
             }
         }
+        return ListaRespuestas[0];
     }
-    static bool VerificarRespuesta(int idrespuesta){
+    static public bool VerificarRespuesta(int idrespuesta){
         bool eraCorrecta=false;
         if(ObtenerCorrecta().idRespuesta==idrespuesta){
             eraCorrecta=true;
@@ -58,6 +60,7 @@ static class Juego{
         }
         ContadorNroPreguntaActual++;
         PreguntaActual=ListaPreguntas[ContadorNroPreguntaActual];
-        return eraCorrecta
+        return eraCorrecta;
     }
+}
 

@@ -28,7 +28,7 @@ public IActionResult Jugar(){
     if(Juego.ObtenerProximaPregunta()==null){
         return RedirectToAction("fin");
     }else{
-        ViewBag.pregunta=Juego.ObtenerProximaPregunta().enunciado;
+        ViewBag.pregunta=Juego.ObtenerProximaPregunta();
         ViewBag.respuestas=Juego.ObtenerProximasRespuestas(ViewBag.pregunta.idPregunta);
     }
     return RedirectToAction("Jugar");

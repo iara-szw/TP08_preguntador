@@ -4,12 +4,12 @@ static class BD{
  
     public static string connectionString = @"Server=localhost; DataBase=PreguntadOrt; Integrated Security=True; TrustServerCertificate=True;";
 
-         public static List<Categoria> levantarCategorias(){
+        public static List<Categoria> levantarCategorias(){
         
         List<Categoria> Cate=new List<Categoria>(); 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            string query="SELECT * FROM Categoria";
+            string query="SELECT * FROM Categorias";
             Cate=connection.Query<Categoria>(query, new{}).ToList();
         }
         return Cate;
