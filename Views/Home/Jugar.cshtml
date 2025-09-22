@@ -23,6 +23,11 @@
 <input type="hidden" name="idPregunta" value="@ViewBag.pregunta.idPregunta">
 <input type="submit">
 </form>
+<a href='@Url.Action("AvanzarPregunta")'>Continuar</a>
+<!--  hidden hasta que se toque el submit anterior -->
 </main>
 
 </body>
+<script>
+let nombres=document.getElementById("listaNombres").value;
+</script>

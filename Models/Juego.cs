@@ -32,6 +32,7 @@ static public class Juego{
     static public Pregunta ObtenerProximaPregunta(){
         if(ContadorNroPreguntaActual>=ListaPreguntas.Count()){
             PreguntaActual=null;
+            
         }else{
         PreguntaActual=ListaPreguntas[ContadorNroPreguntaActual];
 
@@ -58,8 +59,7 @@ static public class Juego{
             CantidadPreguntasCorrectas++;
             puntajeActual=puntajeActual+100;
         }
-        ContadorNroPreguntaActual++;
-        PreguntaActual=ListaPreguntas[ContadorNroPreguntaActual];
+
         return eraCorrecta;
     }
 }

@@ -26,7 +26,9 @@ static class BD{
     }
 
      public static List<Pregunta> levantarPreguntas(int idDif, int idCate){
-        
+        Console.WriteLine(idDif);
+                Console.WriteLine(idCate);
+
         List<Pregunta> preg=new List<Pregunta>(); 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
