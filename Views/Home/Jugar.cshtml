@@ -10,6 +10,7 @@
 @if(ViewBag.pregunta.foto != null){
     <img src="img/ViewBag.pregunta.foto">
 }
+<forM action='@Url.Action("VerificarRespuesta")''>
 @foreach(Respuesta respuesta in ViewBag.respuestas){
     <input type="radio" id="@respuesta.Opcion" name="respuestaA" value="@respuesta" >
         <label for="@respuesta.Opcion">
@@ -21,13 +22,13 @@
   
 
 }
-<input type="submit" onClick="resultado()" id="verResultado">
-<a href='@Url.Action("VerificarRespuesta", new{respuesta=}),' style="display:none" id="avanzar">Continuar</a>
+<button onClick="resultado()" id="verResultado">
+</form>
+<a href='@Url.Action(VerificarRespuesta)' style="display:none" id="avanzar">Continuar</a>
 </main>
-document.querySelector('input[name="respuestaA"]:checked').value;
 </body>
 <script>
-function obtene
+
 function resultado(){
 const submit=document.getElementById("verResultado");
 const avanzar=document.getElementById("avanzar");
