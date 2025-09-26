@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Index";
 }
+<head></head>
 <body>
 <main>
 <p>hola @ViewBag.username</p>
@@ -9,25 +10,45 @@
 @if(ViewBag.pregunta.foto != null){
     <img src="img/ViewBag.pregunta.foto">
 }
-<form action='@Url.Action("VerificarRespuesta")' method="post">
 @foreach(Respuesta respuesta in ViewBag.respuestas){
-    <input type="radio" id="respuesta.Opcion" name="idRespuesta" value="respuesta.contenido">
-        <label for="respuesta.Opcion">
+    <input type="radio" id="@respuesta.Opcion" name="respuestaA" value="@respuesta" >
+        <label for="@respuesta.Opcion">
+        @respuesta.contenido
          @if(respuesta.fotoRes != null){
-        <img src="img/respuesta.fotoRes">
+        <img src="~/img/respuesta.fotoRes">
         }
         </label><br>
   
 
 }
-<input type="hidden" name="idPregunta" value="@ViewBag.pregunta.idPregunta">
-<input type="submit">
-</form>
-<a href='@Url.Action("AvanzarPregunta")'>Continuar</a>
-<!--  hidden hasta que se toque el submit anterior -->
+<input type="submit" onClick="resultado()" id="verResultado">
+<a href='@Url.Action("VerificarRespuesta", new{respuesta=}),' style="display:none" id="avanzar">Continuar</a>
 </main>
-
+document.querySelector('input[name="respuestaA"]:checked').value;
 </body>
 <script>
+function obtene
+function resultado(){
+const submit=document.getElementById("verResultado");
+const avanzar=document.getElementById("avanzar");
+submit.style.display='none';
+avanzar.style.display='block';
+
 let nombres=document.getElementById("listaNombres").value;
+const respuestas=  @Html.Raw(Json.Serialize(ViewBag.respuestas));
+console.log(respuestas)
+for(const respuesta of respuestas){
+    console.log("hola")
+    let opcion=document.getElementById(respuesta.Opcion);
+    opcion.disabled='true';
+    if(respuesta.correcta){
+        opcion.style.backgroundColor='green';
+        console.log("Correcta"); 
+    }else{
+        opcion.style.backgroundColor='red';
+        console.log("nocorrecta");
+    }
+}
+}
+
 </script>

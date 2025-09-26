@@ -19,12 +19,11 @@ public IActionResult ConfigurarJuego(){
 
 public IActionResult Comenzar(string username, int dificultad, int categoria){
     Juego.CargarPartida(username,dificultad,categoria);
-    return RedirectToAction("Jugar",null);
+    return RedirectToAction("Jugar");
 }
 
-public IActionResult Jugar(int correcta){
+public IActionResult Jugar(){
     ViewBag.username=Juego.username;
-    ViewBag.correcta=correcta.idRespuesta;
     if(Juego.ObtenerProximaPregunta()==null){
         return RedirectToAction("fin");
     }else{
@@ -34,16 +33,14 @@ public IActionResult Jugar(int correcta){
     return View();
 } 
 
-[HttpPost] public IActionResult VerificarRespuesta(int idPregunta, int idRespuesta){
-    ViewBag.respuesta=Juego.VerificarRespuesta(idRespuesta);
-    ViewBag.correcta=Juego.ObtenerCorrecta();
-    return RedirectToAction("Jugar",ViewBag.correcta);
+[HttpPost] public IActionResult VerificarRespuesta(Respuesta respuestaA){
+    ViewBag.respuesta=Juego.VerificarRespuesta(respuestaA);
+    return RedirectToAction("Jugar");
 }
 
 public IActionResult avanzarPregunta(){
-        Juego.ContadorNroPreguntaActual++;
-        Juego.PreguntaActual=Juego.ListaPreguntas[ContadorNroPreguntaActual];
-        return RedirectToAction("Jugar",null);
+      Juego.avanzar();
+        return RedirectToAction("Jugar");
 }
 public IActionResult fin(){
     ViewBag.info=Juego.puntajeActual;

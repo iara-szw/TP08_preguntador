@@ -52,15 +52,16 @@ static public class Juego{
         }
         return ListaRespuestas[0];
     }
-    static public bool VerificarRespuesta(int idrespuesta){
-        bool eraCorrecta=false;
-        if(ObtenerCorrecta().idRespuesta==idrespuesta){
-            eraCorrecta=true;
-            CantidadPreguntasCorrectas++;
-            puntajeActual=puntajeActual+100;
-        }
 
-        return eraCorrecta;
+    static public void avanzar(){
+        ContadorNroPreguntaActual++;
+    }
+    static public bool VerificarRespuesta(Respuesta respuesta){
+        if(respuesta.correcta){
+          CantidadPreguntasCorrectas++;
+          puntajeActual=puntajeActual+100;
+        }
+        return respuesta.correcta;
     }
 }
 

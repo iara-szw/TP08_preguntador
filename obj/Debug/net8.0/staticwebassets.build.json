@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "fS8i0eNSTZsHHTalqC5CWyN0i+ezg7LQmY/+4KpL/qI=",
+  "Hash": "MMomASZEWTs31REkTICR8vChk1/ilGApRtCzUw/1dfQ=",
   "Source": "TP08_PreguntadOrt",
   "BasePath": "_content/TP08_PreguntadOrt",
   "Mode": "Default",
@@ -34,6 +34,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\wwwroot\\css\\style.css",
+      "SourceId": "TP08_PreguntadOrt",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\wwwroot\\",
+      "BasePath": "_content/TP08_PreguntadOrt",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\style.css"
     },
     {
       "Identity": "C:\\Users\\49193480\\Downloads\\TP08_preguntador\\wwwroot\\favicon.ico",
