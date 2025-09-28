@@ -8,11 +8,11 @@
 
 <h2>@ViewBag.pregunta.enunciado</h2>
 @if(ViewBag.pregunta.foto != null){
-    <img src="img/ViewBag.pregunta.foto">
+    <img src="~/img/ViewBag.pregunta.foto">
 }
-<forM action='@Url.Action("VerificarRespuesta")''>
+<form action='@Url.Action("VerificarRespuesta")' method="post" id="form">
 @foreach(Respuesta respuesta in ViewBag.respuestas){
-    <input type="radio" id="@respuesta.Opcion" name="respuestaA" value="@respuesta" >
+    <input type="radio" id="@respuesta.Opcion" name="opcion" value="@respuesta.Opcion">
         <label for="@respuesta.Opcion">
         @respuesta.contenido
          @if(respuesta.fotoRes != null){
@@ -20,36 +20,55 @@
         }
         </label><br>
   
-
 }
-<button onClick="resultado()" id="verResultado">
+
+<input type="hidden" id="res" name="respuesta" value="">
+
+
+<button type="button" onClick="resultado()" id="verResultado">Ver Resultado</button>
+<button type="submit" style="display:none"   id="avanzar">Continuar</button>
+
 </form>
-<a href='@Url.Action(VerificarRespuesta)' style="display:none" id="avanzar">Continuar</a>
+<p style="display:none" id="resultado"></p>
+    
 </main>
 </body>
+
+
 <script>
 
 function resultado(){
 const submit=document.getElementById("verResultado");
 const avanzar=document.getElementById("avanzar");
-submit.style.display='none';
-avanzar.style.display='block';
-
-let nombres=document.getElementById("listaNombres").value;
-const respuestas=  @Html.Raw(Json.Serialize(ViewBag.respuestas));
-console.log(respuestas)
-for(const respuesta of respuestas){
-    console.log("hola")
-    let opcion=document.getElementById(respuesta.Opcion);
-    opcion.disabled='true';
-    if(respuesta.correcta){
-        opcion.style.backgroundColor='green';
-        console.log("Correcta"); 
-    }else{
-        opcion.style.backgroundColor='red';
-        console.log("nocorrecta");
+const resultado=document.getElementById("resultado");
+   let seleccion = document.querySelector('input[name="opcion"]:checked');
+    if(seleccion==null){
+         alert("Debe seleccionar una respuesta");
+        return;
     }
-}
-}
-
+    const res=document.getElementById("res");
+    res.value=seleccion.value;
+    submit.style.display='none';
+    avanzar.style.display='block'; 
+   const respuestas = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.respuestas));
+    
+    for(const respuesta of respuestas){
+        let label = document.querySelector(`label[for="${respuesta.Opcion}"]`);
+        let opcion=document.getElementById(respuesta.Opcion);
+        opcion.disabled = true;
+        if(respuesta.correcta){
+            
+            label.style.backgroundColor='green';
+            if(seleccion.value==respuesta.Opcion){
+                resultado.innerText="Respuesta Correcta";
+            }
+        }else{
+            label.style.backgroundColor='red';
+        }
+    }
+    if(resultado.innerText!="Respuesta Correcta"){
+            resultado.innerText="Respuesta Incorrecta";
+    }
+    resultado.style.display='block';
+ }
 </script>

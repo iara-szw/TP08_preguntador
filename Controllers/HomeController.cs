@@ -33,17 +33,13 @@ public IActionResult Jugar(){
     return View();
 } 
 
-[HttpPost] public IActionResult VerificarRespuesta(Respuesta respuestaA){
-    ViewBag.respuesta=Juego.VerificarRespuesta(respuestaA);
+[HttpPost] public IActionResult VerificarRespuesta(int respuesta){
+    ViewBag.respuesta=Juego.VerificarRespuesta(respuesta);
     return RedirectToAction("Jugar");
 }
 
-public IActionResult avanzarPregunta(){
-      Juego.avanzar();
-        return RedirectToAction("Jugar");
-}
 public IActionResult fin(){
     ViewBag.info=Juego.puntajeActual;
-    return RedirectToAction("Jugar");
+    return View();
 }
 }

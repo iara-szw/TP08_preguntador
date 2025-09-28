@@ -43,25 +43,24 @@ static public class Juego{
         ListaRespuestas=BD.ObtenerRespuestas(idPregunta);
         return ListaRespuestas;
     }
-    static public Respuesta ObtenerCorrecta(){
+    static public int ObtenerCorrecta(){
 
         foreach(Respuesta res in ListaRespuestas){
             if (res.correcta==true){
-                return res;
+                return res.Opcion;
             }
         }
-        return ListaRespuestas[0];
+        return ListaRespuestas[0].idRespuesta;
     }
 
-    static public void avanzar(){
-        ContadorNroPreguntaActual++;
-    }
-    static public bool VerificarRespuesta(Respuesta respuesta){
-        if(respuesta.correcta){
+    static public bool VerificarRespuesta(int respuesta){
+        bool esCorrecta=(respuesta==ObtenerCorrecta());
+        if(esCorrecta){
           CantidadPreguntasCorrectas++;
           puntajeActual=puntajeActual+100;
-        }
-        return respuesta.correcta;
+        } 
+        ContadorNroPreguntaActual++;
+        return esCorrecta;
     }
 }
 
