@@ -1,9 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Inicio";
 }
 <head>
+  <link rel="stylesheet" href="~/css/style.css">
 </head>
-<div>
-    <h1>Index</h1>
-    <a href='@Url.Action("ConfigurarJuego")'>a</a>
-</div>
+<body class="index">
+<main>
+    <h1>PreguntadORT</h1>
+    <div>
+       <a href='@Url.Action("ConfigurarJuego")'>Empezar</a><br>
+       <a href="">Créditos</a>
+    </div>
+</main>
+</body>
