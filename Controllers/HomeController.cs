@@ -11,35 +11,69 @@ public class HomeController : Controller
     }
 
 public IActionResult ConfigurarJuego(){
-    ViewBag.cate=Juego.ObtenerCategorias();
-        ViewBag.dif=Juego.ObtenerDificultades();
+    Juego jueguito=Objeto.StringToobject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+    if (jueguito == null){ 
+        Juego juegoo= new Juego();
+        ViewBag.cate=juegoo.ObtenerCategorias();
+        ViewBag.dif=juegoo.ObtenerDificultades();
         return View();
+       
+    }else{
+        return RedirectToAction("Jugar");
+
+    }
 
 }
 
 public IActionResult Comenzar(string username, int dificultad, int categoria){
-    Juego.CargarPartida(username,dificultad,categoria);
+    Juego juego = new Juego();
+    juego.CargarPartida(username,dificultad,categoria);    
+    if(HttpContext.Session.GetString("JuegoActual")!= null){
+        return RedirectToAction("Jugar");
+    }
+    HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(juego));
+   
     return RedirectToAction("Jugar");
 }
 
 public IActionResult Jugar(){
-    ViewBag.username=Juego.username;
-    if(Juego.ObtenerProximaPregunta()==null){
+    Juego jueguito=Objeto.StringToobject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+    if (jueguito==null){
+        return RedirectToAction("ConfigurarJuego");
+    }
+    ViewBag.username=jueguito.username;
+    if(jueguito.ObtenerProximaPregunta()==null){
         return RedirectToAction("fin");
     }else{
-        ViewBag.pregunta=Juego.ObtenerProximaPregunta();
-        ViewBag.respuestas=Juego.ObtenerProximasRespuestas(ViewBag.pregunta.idPregunta);
+        ViewBag.pregunta=jueguito.ObtenerProximaPregunta();
+        ViewBag.respuestas=jueguito.ObtenerProximasRespuestas(ViewBag.pregunta.idPregunta);
     }
+    HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(jueguito));
     return View();
 } 
 
 [HttpPost] public IActionResult VerificarRespuesta(int respuesta){
-    ViewBag.respuesta=Juego.VerificarRespuesta(respuesta);
+    Juego jueguito=Objeto.StringToobject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+      if (jueguito is null){
+        return RedirectToAction("ConfigurarJuego");
+    }
+    ViewBag.respuesta=jueguito.VerificarRespuesta(respuesta);
+    HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(jueguito));
+
     return RedirectToAction("Jugar");
 }
 
 public IActionResult fin(){
-    ViewBag.info=Juego.puntajeActual;
+    Juego jueguito=Objeto.StringToobject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+      if (jueguito is null){
+        return RedirectToAction("ConfigurarJuego");
+    }
+      if(jueguito.ObtenerProximaPregunta()!=null){
+        return RedirectToAction("Jugar");
+      }
+    ViewBag.info=jueguito.puntajeActual;
+    HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(jueguito));
+
     return View();
 }
 }

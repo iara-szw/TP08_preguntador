@@ -153,3 +153,7 @@ C:\Users\iarit\Downloads\TP08_preguntador-1\obj\Debug\net8.0\refint\TP08_Pregunt
 C:\Users\iarit\Downloads\TP08_preguntador-1\obj\Debug\net8.0\TP08_PreguntadOrt.pdb
 C:\Users\iarit\Downloads\TP08_preguntador-1\obj\Debug\net8.0\TP08_PreguntadOrt.genruntimeconfig.cache
 C:\Users\iarit\Downloads\TP08_preguntador-1\obj\Debug\net8.0\ref\TP08_PreguntadOrt.dll
+C:\Users\49193480\Downloads\TP08_preguntador\bin\Debug\net8.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:\Users\49193480\Downloads\TP08_preguntador\bin\Debug\net8.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\Users\49193480\Downloads\TP08_preguntador\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\49193480\Downloads\TP08_preguntador\bin\Debug\net8.0\System.Security.Cryptography.Xml.dll
