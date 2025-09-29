@@ -1,24 +1,28 @@
 @{
     ViewData["Title"] = "Index";
 }
-<body>
-<main>
-<form action='@Url.Action("Comenzar")'>
-<input type="text" name="username" required>
-<p>Elegi la dificultad</p>
-@{foreach(Dificultad dif in ViewBag.dif){
-      <input type="radio" id="dif.nombre" name="dificultad" value=@dif.IdDificultad>
-        <label for="dif.nombre">@dif.devolverNombre()</label><br>
+<head>
+  <link rel="stylesheet" href="~/css/style.css">
+</head>
 
-}}
-<p>Elegi la categoria</p>
-@{foreach(Categoria cate in ViewBag.cate){
-      <input type="radio" id="cate.nombre" name="categoria" value=@cate.idCategoria>
-        <label for="cate.nombre">@cate.devolverNombre()</label><br>
+<body class= "configurar">
+  <main>
+    <form action='@Url.Action("Comenzar")'>
+    <p>Ingresá tu nombre:</p>
+    <input type="text" name="username" required>
+      <p>Dificultad:</p>
+      @{foreach(Dificultad dif in ViewBag.dif){
+          <input type="radio" id="dif.nombre" name="dificultad" value=@dif.IdDificultad>
+             <label for="dif.nombre">@dif.devolverNombre()</label><br>
 
-}}
-<input type="submit">
-</form>
-</main>
+      }}
+     <p>Categoría</p>
+       @{foreach(Categoria cate in ViewBag.cate){
+         <input type="radio" id="cate.nombre" name="categoria" value=@cate.idCategoria>
+           <label for="cate.nombre">@cate.devolverNombre()</label><br>
+      }}
+    <input type="submit">
+  </form>
+  </main>
 </body>
 

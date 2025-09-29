@@ -1,11 +1,13 @@
 @{
     ViewData["Title"] = "Index";
 }
-<head></head>
-<body>
+<head>
+  <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body class="jugar">
 <main>
-<p>hola @ViewBag.username</p>
-
+<h3>Hola, @ViewBag.username</h3>
+<div>
 <h2>@ViewBag.pregunta.enunciado</h2>
 @if(ViewBag.pregunta.foto != null){
     <img src="~/img/ViewBag.pregunta.foto">
@@ -23,10 +25,10 @@
 }
 
 <input type="hidden" id="res" name="respuesta" value="">
-
-
+<div>
 <button type="button" onClick="resultado()" id="verResultado">Ver Resultado</button>
 <button type="submit" style="display:none"   id="avanzar">Continuar</button>
+</div>
 
 </form>
 <p style="display:none" id="resultado"></p>
