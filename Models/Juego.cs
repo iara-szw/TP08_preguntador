@@ -6,6 +6,7 @@ using Newtonsoft.Json;
    [JsonProperty]  private Pregunta PreguntaActual;
   [JsonProperty]  private List<Pregunta> ListaPreguntas;
   [JsonProperty] private List<Respuesta> ListaRespuestas;
+    [JsonProperty] private int multiplicador;
 
      private void InicializarJuego(){
         username="";
@@ -27,6 +28,8 @@ using Newtonsoft.Json;
         InicializarJuego();
         username=Username;
         ListaPreguntas=BD.levantarPreguntas(dificultad, categoria);
+        multiplicador=BD.levantarDificultades()[IdDificultad==dificultad].multiplicador;
+
     }
      public Pregunta ObtenerProximaPregunta(){
         if(ContadorNroPreguntaActual>=ListaPreguntas.Count()){
@@ -55,10 +58,11 @@ using Newtonsoft.Json;
      public bool VerificarRespuesta(int respuesta){
         bool esCorrecta=(respuesta==ObtenerCorrecta());
         if(esCorrecta){
-          puntajeActual=puntajeActual+100;
+          puntajeActual=puntajeActual+100*multiplicador;
         } 
         ContadorNroPreguntaActual++;
         return esCorrecta;
     }
+
 }
 

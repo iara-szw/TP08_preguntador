@@ -72,6 +72,8 @@ public IActionResult fin(){
         return RedirectToAction("Jugar");
       }
     ViewBag.info=jueguito.puntajeActual;
+    ViewBag.username=jueguito.username;
+    ViewBag.top= BD.agregarTop(jueguito.puntajeActual,ViewBag.username);
     HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(jueguito));
 
     return View();
