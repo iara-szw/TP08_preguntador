@@ -508,7 +508,6 @@
           }
         }
       },
-<<<<<<< HEAD
       "System.Security.Cryptography.Xml/8.0.2": {
         "dependencies": {
           "System.Security.Cryptography.Pkcs": "8.0.1"
@@ -522,8 +521,6 @@
       },
       "System.Security.Principal.Windows/5.0.0": {},
       "System.Text.Encodings.Web/8.0.0": {},
-=======
->>>>>>> 836a6952d111b6b20e49417945d73c82c02f63e1
       "System.Text.Json/8.0.5": {
         "runtime": {
           "lib/net8.0/System.Text.Json.dll": {

@@ -12,65 +12,59 @@
 @if(ViewBag.pregunta.foto != null){
     <img src="~/img/ViewBag.pregunta.foto">
 }
+
 <form action='@Url.Action("VerificarRespuesta")' method="post" id="form">
+            <input type="hidden" id="res" name="respuesta" value="" />
+            <div id="opciones">
+
 @foreach(Respuesta respuesta in ViewBag.respuestas){
-    <input type="radio" id="@respuesta.Opcion" name="opcion" value="@respuesta.Opcion">
-        <label for="@respuesta.Opcion">
-        @respuesta.contenido
-         @if(respuesta.fotoRes != null){
-        <img src="~/img/respuesta.fotoRes">
-        }
-        </label><br>
+    <div class="opcion" id="opcion-@respuesta.Opcion" onclick="seleccionarRespuesta('@respuesta.Opcion', @respuesta.correcta.ToString().ToLower())">
+                        <p>@respuesta.Opcion. @respuesta.contenido</p>
+                        @if (respuesta.fotoRes != null) {
+                            <img src="~/img/@respuesta.fotoRes" />
+                        }
+                    </div>
   
 }
-
-<input type="hidden" id="res" name="respuesta" value="">
-<div>
-<button type="button" onClick="resultado()" id="verResultado">Ver Resultado</button>
-<button type="submit" style="display:none"   id="avanzar">Continuar</button>
-</div>
-
+            </div>
 </form>
-<p style="display:none" id="resultado"></p>
-    
+   <div id="resultado"></div>
+        <button id="continuar" style="display:none" onclick="continuar()">Continuar</button>
+    </div>
 </main>
 </body>
 
-
 <script>
+     function seleccionarRespuesta(opcionSeleccionada, esCorrecta) {
+        document.getElementById("res").value = opcionSeleccionada;
 
-function resultado(){
-const submit=document.getElementById("verResultado");
-const avanzar=document.getElementById("avanzar");
-const resultado=document.getElementById("resultado");
-   let seleccion = document.querySelector('input[name="opcion"]:checked');
-    if(seleccion==null){
-         alert("Debe seleccionar una respuesta");
-        return;
-    }
-    const res=document.getElementById("res");
-    res.value=seleccion.value;
-    submit.style.display='none';
-    avanzar.style.display='block'; 
-   const respuestas = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.respuestas));
-    
-    for(const respuesta of respuestas){
-        let label = document.querySelector(`label[for="${respuesta.Opcion}"]`);
-        let opcion=document.getElementById(respuesta.Opcion);
-        opcion.disabled = true;
-        if(respuesta.correcta){
-            
-            label.style.backgroundColor='green';
-            if(seleccion.value==respuesta.Opcion){
-                resultado.innerText="Respuesta Correcta";
+        document.querySelectorAll(".opcion").forEach(opcion => {
+            opcion.onclick = null; 
+        });
+
+        document.querySelectorAll(".opcion").forEach(opcion => {
+            const opcionId = opcion.id.replace('opcion-', '');
+            if (opcionId === opcionSeleccionada) {
+
+                if (esCorrecta === 'true') {
+                    opcion.style.backgroundColor = "green";
+                } else {
+                    opcion.style.backgroundColor = "red"; 
+                }
+            } else {
+                opcion.style.backgroundColor = "lightgray"; 
             }
-        }else{
-            label.style.backgroundColor='red';
-        }
+        });
+
+        const resultado = document.getElementById("resultado");
+        resultado.innerText = esCorrecta === 'true' ? "Respuesta Correcta" : "Respuesta Incorrecta";
+        resultado.style.color = esCorrecta === 'true' ? "green" : "red";
+        resultado.style.display = "block";
+        const continuarButton = document.getElementById("continuar");
+        continuarButton.style.display = "inline-block";
     }
-    if(resultado.innerText!="Respuesta Correcta"){
-            resultado.innerText="Respuesta Incorrecta";
+
+    function continuar() {
+        document.getElementById("form").submit();
     }
-    resultado.style.display='block';
- }
 </script>
