@@ -46,7 +46,8 @@ static class BD{
         return res;
     }
 
-    public static bool agregarTop(int puntajeActual, string Username){
+    public static bool agregarTop(double puntajeActual, string Username){
+        bool res;
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query="EXEC agregarTop @puntaje, @username";

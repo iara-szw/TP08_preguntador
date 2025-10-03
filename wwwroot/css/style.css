@@ -2,13 +2,28 @@
   margin: 0%;
   padding: 0%;
   border: 1px solid black;
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+.index,
+.configurar {
+  background-image: url(/img/fondo.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.jugar {
+  background-image: url(/img/fondo_preguntas.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
 .index h1 {
   justify-self: center;
   margin-bottom: 2.5%;
-  margin-top: 2.5%;
- font-size: 64px;
+  margin-top: 10%;
+  font-size: 64px;
+  color: white;
 }
 
 .index main div {
@@ -20,44 +35,85 @@
   display: block;
   width: 20%;
   font-size: 18px;
-  border: 1px solid gray;
+  border: 2px solid rgb(255, 255, 255);
   border-radius: 10px;
   padding: 2%;
   justify-self: center;
   text-align: center;
+  background-color: #ffffffb7;
+  text-decoration: none;
+  color: rgb(31, 31, 31);
+
 }
 
+.jugar {
+}
 .configurar form {
   width: 40%;
   justify-self: center;
+  padding: 3%;
+  background-color: #ffffffb7;
+  color: #07073f;
+  border-radius: 15px;
 }
-
-.configurar form input[type=text] {
+.configurar h1 {
+  margin-bottom: 3%;
+}
+.configurar h3 {
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.configurar form input[type="text"] {
   border-radius: 20px;
   width: 30%;
   padding: 0.5%;
+  background-color: rgba(255, 241, 255, 0.89);
 }
 
-.configurar form input[type=submit] {
+.configurar form input[type="submit"] {
   border-radius: 5px;
   width: 15%;
   margin-left: 10%;
   padding: 0.75%;
 }
-
-
-
+.jugar h3 {
+  margin-top: 3%;
+  margin-left: 10%;
+}
+.jugar h2 {
+  margin-top: 2%;
+  justify-self: center;
+  margin-bottom: 4%;
+  background-color: #f8f8f8c0;
+  padding: 2%;
+  width: 75%;
+  border-radius: 15px;
+  border: 2px solid rgb(190, 189, 189)
+}
 .jugar form {
   width: 80%;
   justify-self: center;
 }
-.jugar input [type=radio]{
+.jugar button {
+  padding: 4%;
+  width: 100%;
+  background-color: #ffffff96;
+  border-radius: 15px;
+  font-size: 18px;
+  border: 2px solid rgb(255, 255, 255);
 }
-.jugar #opciones{
-  display: grid;
-   grid-template-columns: repeat(2, 1fr);
-}
-.jugar .opcion{
+.jugar button[type="submit"] {
   padding: 2%;
-  width: 80%;
+  display: block;
+  width: 20%;
+  margin-left: 90%;
+  margin-top: 4%;
+  margin-bottom: 2%;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+}
+.jugar form#form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5% 1%;
 }

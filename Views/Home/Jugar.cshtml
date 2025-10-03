@@ -6,65 +6,60 @@
 </head>
 <body class="jugar">
 <main>
-<h3>Hola, @ViewBag.username</h3>
-<div>
+<h3>¡Hola, @ViewBag.username!</h3>
+
 <h2>@ViewBag.pregunta.enunciado</h2>
 @if(ViewBag.pregunta.foto != null){
     <img src="~/img/ViewBag.pregunta.foto">
 }
-
 <form action='@Url.Action("VerificarRespuesta")' method="post" id="form">
-            <input type="hidden" id="res" name="respuesta" value="" />
-            <div id="opciones">
-
 @foreach(Respuesta respuesta in ViewBag.respuestas){
-    <div class="opcion" id="opcion-@respuesta.Opcion" onclick="seleccionarRespuesta('@respuesta.Opcion', @respuesta.correcta.ToString().ToLower())">
-                        <p>@respuesta.Opcion. @respuesta.contenido</p>
-                        @if (respuesta.fotoRes != null) {
-                            <img src="~/img/@respuesta.fotoRes" />
-                        }
-                    </div>
+    <button type="button" id="@respuesta.Opcion" name="opcion" value="@respuesta.Opcion" onClick="resultado('@respuesta.Opcion')"> 
+    @respuesta.contenido  @if(respuesta.fotoRes != null){
+        <img src="~/img/respuesta.fotoRes">
+        }
+    </button>
   
 }
-            </div>
+<input type="hidden" id="res" name="respuesta" value="">
+
+<button type="submit" style="display:none"  id="avanzar">Continuar</button>
+
 </form>
-   <div id="resultado"></div>
-        <button id="continuar" style="display:none" onclick="continuar()">Continuar</button>
-    </div>
+<p style="display:none" id="resultado"></p>
+    
 </main>
 </body>
 
+
 <script>
-     function seleccionarRespuesta(opcionSeleccionada, esCorrecta) {
-        document.getElementById("res").value = opcionSeleccionada;
 
-        document.querySelectorAll(".opcion").forEach(opcion => {
-            opcion.onclick = null; 
-        });
-
-        document.querySelectorAll(".opcion").forEach(opcion => {
-            const opcionId = opcion.id.replace('opcion-', '');
-            if (opcionId === opcionSeleccionada) {
-
-                if (esCorrecta === 'true') {
-                    opcion.style.backgroundColor = "green";
-                } else {
-                    opcion.style.backgroundColor = "red"; 
-                }
-            } else {
-                opcion.style.backgroundColor = "lightgray"; 
-            }
-        });
-
-        const resultado = document.getElementById("resultado");
-        resultado.innerText = esCorrecta === 'true' ? "Respuesta Correcta" : "Respuesta Incorrecta";
-        resultado.style.color = esCorrecta === 'true' ? "green" : "red";
-        resultado.style.display = "block";
-        const continuarButton = document.getElementById("continuar");
-        continuarButton.style.display = "inline-block";
+function resultado(respuestaSeleccionada){
+const avanzar=document.getElementById("avanzar");
+const resultadoo=document.getElementById("res");
+resultadoo.value=respuestaSeleccionada;
+   avanzar.style.display='block'; 
+   const respuestas = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.respuestas));
+    for(const respuesta of respuestas){
+        
+         if (respuesta.Opcion==respuestaSeleccionada){
+            aEvaluar=respuesta
+        } 
+        let opcion=document.getElementById(respuesta.Opcion);
+        opcion.disabled = true;
     }
-
-    function continuar() {
-        document.getElementById("form").submit();
+    let opcion=document.getElementById(aEvaluar.Opcion);
+        if(aEvaluar.correcta){
+            
+            opcion.style.backgroundColor='green';
+                resultado.innerText="Respuesta Correcta";
+        }else{
+            opcion.style.backgroundColor='red';
+        }
+    
+    if(resultado.innerText!="Respuesta Correcta"){
+            resultado.innerText="Respuesta Incorrecta";
     }
+    resultado.style.display='block';
+ }
 </script>

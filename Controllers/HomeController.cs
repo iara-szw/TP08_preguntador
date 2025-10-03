@@ -12,7 +12,7 @@ public class HomeController : Controller
 
 public IActionResult ConfigurarJuego(){
     Juego jueguito=Objeto.StringToobject<Juego>(HttpContext.Session.GetString("JuegoActual"));
-    if (jueguito == null){ 
+    if (jueguito == null || jueguito.terminado!=false){ 
         Juego juegoo= new Juego();
         ViewBag.cate=juegoo.ObtenerCategorias();
         ViewBag.dif=juegoo.ObtenerDificultades();
@@ -74,6 +74,7 @@ public IActionResult fin(){
     ViewBag.info=jueguito.puntajeActual;
     ViewBag.username=jueguito.username;
     ViewBag.top= BD.agregarTop(jueguito.puntajeActual,ViewBag.username);
+    jueguito.terminado=true;
     HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(jueguito));
 
     return View();

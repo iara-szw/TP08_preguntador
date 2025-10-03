@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\49002406\\Downloads\\TP08_preguntador\\wwwroot\\img\\fondo.jpg",
+      "PackagePath": "staticwebassets\\img\\fondo.jpg"
+    },
+    {
+      "Id": "C:\\Users\\49002406\\Downloads\\TP08_preguntador\\wwwroot\\img\\fondo_preguntas.png",
+      "PackagePath": "staticwebassets\\img\\fondo_preguntas.png"
+    },
+    {
       "Id": "C:\\Users\\49002406\\Downloads\\TP08_preguntador\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

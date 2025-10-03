@@ -1,12 +1,13 @@
 using Newtonsoft.Json;
  public class Juego{
      public  string username;
-    public int puntajeActual;
+    public double puntajeActual;
    [JsonProperty]  private int ContadorNroPreguntaActual;
    [JsonProperty]  private Pregunta PreguntaActual;
   [JsonProperty]  private List<Pregunta> ListaPreguntas;
   [JsonProperty] private List<Respuesta> ListaRespuestas;
-    [JsonProperty] private int multiplicador;
+    [JsonProperty] private double multiplicador;
+    [JsonProperty] public bool terminado{get;set;}
 
      private void InicializarJuego(){
         username="";
@@ -15,6 +16,7 @@ using Newtonsoft.Json;
         PreguntaActual=new Pregunta();
         ListaPreguntas=new List<Pregunta>();
         ListaRespuestas=new List<Respuesta>();
+        terminado=false;
     }
 
      public List<Categoria> ObtenerCategorias(){
@@ -28,7 +30,13 @@ using Newtonsoft.Json;
         InicializarJuego();
         username=Username;
         ListaPreguntas=BD.levantarPreguntas(dificultad, categoria);
-        multiplicador=BD.levantarDificultades()[IdDificultad==dificultad].multiplicador;
+        List<Dificultad> dif=BD.levantarDificultades();
+        for(int i=0;i<dif.Count();i++){
+            if(dif[i].IdDificultad==dificultad){
+                multiplicador=dif[i].multiplicador;
+            }
+        }
+
 
     }
      public Pregunta ObtenerProximaPregunta(){
