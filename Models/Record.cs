@@ -1,6 +1,6 @@
 public class Record{
-    int IdRecord{get;set;}
-    string Username{get;set;}
-    int Puntaje{get;set;}
-    DateTime Fecha{get;set;}
+    public int IdRecord{get;set;}
+     public string Username{get;set;}
+    public int Puntaje{get;set;}
+    public DateTime Fecha{get;set;}
 }

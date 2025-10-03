@@ -12,7 +12,7 @@ public class HomeController : Controller
 
 public IActionResult ConfigurarJuego(){
     Juego jueguito=Objeto.StringToobject<Juego>(HttpContext.Session.GetString("JuegoActual"));
-    if (jueguito == null || jueguito.terminado!=false){ 
+    if (jueguito == null || jueguito.terminado==true){ 
         Juego juegoo= new Juego();
         ViewBag.cate=juegoo.ObtenerCategorias();
         ViewBag.dif=juegoo.ObtenerDificultades();
@@ -26,11 +26,15 @@ public IActionResult ConfigurarJuego(){
 }
 
 public IActionResult Comenzar(string username, int dificultad, int categoria){
-    Juego juego = new Juego();
-    juego.CargarPartida(username,dificultad,categoria);    
-    if(HttpContext.Session.GetString("JuegoActual")!= null){
+   
+    Juego jueguito=Objeto.StringToobject<Juego>(HttpContext.Session.GetString("JuegoActual"));
+
+    if(jueguito!= null && jueguito.terminado==false){
         return RedirectToAction("Jugar");
     }
+    Juego juego = new Juego();
+    juego.CargarPartida(username,dificultad,categoria); 
+    HttpContext.Session.Remove("JuegoActual");
     HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(juego));
    
     return RedirectToAction("Jugar");
@@ -73,7 +77,7 @@ public IActionResult fin(){
       }
     ViewBag.info=jueguito.puntajeActual;
     ViewBag.username=jueguito.username;
-    ViewBag.top= BD.agregarTop(jueguito.puntajeActual,ViewBag.username);
+    BD.agregarTop(jueguito.puntajeActual,ViewBag.username);
     jueguito.terminado=true;
     HttpContext.Session.SetString("JuegoActual", Objeto.ObjectToString(jueguito));
 

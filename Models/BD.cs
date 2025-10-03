@@ -46,14 +46,14 @@ static class BD{
         return res;
     }
 
-    public static bool agregarTop(double puntajeActual, string Username){
-        bool res;
+    public static void agregarTop(double puntajeActual, string Username){
+                bool res=false; 
+
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
             string query="EXEC agregarTop @puntaje, @username";
             res=connection.QueryFirstOrDefault<bool>(query, new{puntaje=puntajeActual, username=Username});
         }
-        return res;
 
     }
      public static List<Record> levantarRecord(){
@@ -61,7 +61,7 @@ static class BD{
         List<Record> Rec=new List<Record>(); 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            string query="EXEC levantarRecords";
+            string query="EXEC levantarTop";
             Rec=connection.Query<Record>(query, new{}).ToList();
         }
         return Rec;
