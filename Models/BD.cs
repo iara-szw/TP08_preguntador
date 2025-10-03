@@ -64,5 +64,5 @@ static class BD{
             Rec=connection.Query<Record>(query, new{}).ToList();
         }
         return Rec;
-
+     }
 }
