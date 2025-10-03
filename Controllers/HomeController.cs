@@ -79,4 +79,9 @@ public IActionResult fin(){
 
     return View();
 }
+
+public IActionResult records(){
+    ViewBag.lista=BD.levantarRecord();
+    return View();
+}
 }
