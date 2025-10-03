@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Records";
+}
+<head>
+  <link rel="stylesheet" href="~/css/style.css">
+</head>
+<body class="index">
+<main>
+    <h1>Mejores puntajes totales</h1>
+    @foreach(Record puntaje in ViewBag.lista){
+        <div id="record"> 
+        <p>@puntaje.Username</p>
+        <p>@puntaje.Puntaje</p>
+        <p>@puntaje.Fecha</p>
+        </div>
+    }
+    
+    <div>
+       <a href='@Url.Action("ConfigurarJuego")'>Escala en la top</a><br>
+           </div>
+</main>
+</body>
