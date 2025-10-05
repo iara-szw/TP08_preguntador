@@ -1,29 +1,43 @@
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Configuración";
 }
 <head>
   <link rel="stylesheet" href="~/css/style.css">
 </head>
 
 <body class= "configurar">
+
   <main>
     <form action='@Url.Action("Comenzar")'>
         <h1>Configuración</h1>
+        
     <h3>Ingresá tu nombre:</h3>
-    <input type="text" name="username" required>
-      <h3>Dificultad:</h3>
-      @{foreach(Dificultad dif in ViewBag.dif){
-          <input type="radio" id="dif.nombre" name="dificultad" value=@dif.IdDificultad>
-             <label for="dif.nombre">@dif.Nombre</label><br>
+       <input type="text" name="username" required>
 
+     <h3>Selecciona tus ajustes:</h3>
+        
+ 
+    
+      <select name="Dificultad"  required>
+      <option value="" disabled selected>Dificultad</option>
+      @{foreach(Dificultad dif in ViewBag.dif){
+          <option id="dif.nombre" name="dificultad" value=@dif.IdDificultad >
+             <label for="dif.nombre">@dif.Nombre</label><br>
+             </option>
       }}
-     <h3>Categoría</h3>
+      </select>
+      <select name="Categoria" required>
+      <option value="" disabled selected>Categoria</option>
        @{foreach(Categoria cate in ViewBag.cate){
-         <input type="radio" id="cate.nombre" name="categoria" value=@cate.idCategoria>
+         <option id="cate.nombre" name="categoria" value=@cate.idCategoria required>
            <label for="cate.nombre">@cate.nombre</label><br>
+           </option>
       }}
+      </select>
+      <br>
     <input type="submit">
   </form>
   </main>
+
 </body>
 

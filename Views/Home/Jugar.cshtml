@@ -1,10 +1,11 @@
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Juego";
 }
 <head>
   <link rel="stylesheet" href="~/css/style.css">
 </head>
 <body class="jugar">
+  
 <main>
 <h3>¡Hola, @ViewBag.username!</h3>
 
@@ -25,10 +26,9 @@
 
 <button type="submit" style="display:none"  id="avanzar">Continuar</button>
 
-</form>
-<p style="display:none" id="resultado"></p>
-    
+</form>    
 </main>
+
 </body>
 
 
@@ -47,19 +47,14 @@ resultadoo.value=respuestaSeleccionada;
         } 
         let opcion=document.getElementById(respuesta.Opcion);
         opcion.disabled = true;
+        opcion.style.border='2px solid white'
     }
     let opcion=document.getElementById(aEvaluar.Opcion);
         if(aEvaluar.correcta){
             
-            opcion.style.backgroundColor='green';
-                resultado.innerText="Respuesta Correcta";
+            opcion.style.backgroundColor='#1dc71dfa';
         }else{
-            opcion.style.backgroundColor='red';
+            opcion.style.backgroundColor='#dd1d1de6';
         }
-    
-    if(resultado.innerText!="Respuesta Correcta"){
-            resultado.innerText="Respuesta Incorrecta";
-    }
-    resultado.style.display='block';
  }
 </script>

@@ -1,11 +1,17 @@
-
+@{
+    ViewData["Title"] = "Final";
+}
 <head>
   <link rel="stylesheet" href="~/css/style.css">
 </head>
-<body>
+<body class="fin">
+
     <main>
-        <p>@ViewBag.info</p>
+
+    <h3>¡Terminaste las preguntas!</h3>
+        <p>Tu puntaje: @ViewBag.info</p>
         <a href='@Url.Action("ConfigurarJuego")'>Volver a jugar</a>
         <a href='@Url.Action("records")'>Ver tablero de puntajes</a>
     </main>
+
 </body>
