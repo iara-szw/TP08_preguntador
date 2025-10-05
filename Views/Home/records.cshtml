@@ -7,7 +7,7 @@
 <body class="index">
  
 <main>
-    <h1>Mejores puntajes totales</h1>
+    <h1 id="enRecords">Mejores puntajes totales</h1>
        <a href='@Url.Action("ConfigurarJuego")' id="seguirJugando">¡Avanza en el top!</a><br>
     <div id="records">
     @foreach(Record puntaje in ViewBag.lista){

@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\img\\fondo_preguntas.png"
     },
     {
+      "Id": "C:\\Users\\iarit\\Downloads\\TP08_preguntador-2\\wwwroot\\img\\pregunti.png",
+      "PackagePath": "staticwebassets\\img\\pregunti.png"
+    },
+    {
       "Id": "C:\\Users\\iarit\\Downloads\\TP08_preguntador-2\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

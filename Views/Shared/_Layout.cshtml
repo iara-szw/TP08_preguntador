@@ -10,7 +10,13 @@
 
 <body>
     <header>
-        o
+        <nav>
+            <ul>
+                <li><a href='@Url.Action("Index")'><p>Inicio</p></a></li>
+                <li><img src="~/img/pregunti.png" alt="Logo" id="logo"/></li>
+                <li><a href='@Url.Action("Records")'><p>Ver records</p></a></li>
+            </ul>
+        </nav>
     </header>
 
     <main role="main">
@@ -18,8 +24,10 @@
     </main>
 
     <footer>
-        &copy; @DateTime.Now.Year - NombreProyecto
-    </footer>
+    <img src="~/img/pregunti.png" alt="Logo" id="logo"/>
+    <p>PreguntadORT - Szwarstein,Lopez</p>
+    <a href=""><p>Ver más proyectos</p></a>  
+      </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xjqIfVkUOSF1+vxv9ugctilxo5BZW+sDLpcVX7yUDOo=",
+  "Hash": "GfXg/NxzHKtpVC/dhHc+JbKKdTGpddC10nPtb5LzRvk=",
   "Source": "TP08_PreguntadOrt",
   "BasePath": "_content/TP08_PreguntadOrt",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\fondo.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\iarit\\Downloads\\TP08_preguntador-2\\wwwroot\\img\\pregunti.png",
+      "SourceId": "TP08_PreguntadOrt",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\iarit\\Downloads\\TP08_preguntador-2\\wwwroot\\",
+      "BasePath": "_content/TP08_PreguntadOrt",
+      "RelativePath": "img/pregunti.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\pregunti.png"
     },
     {
       "Identity": "C:\\Users\\iarit\\Downloads\\TP08_preguntador-2\\wwwroot\\js\\site.js",

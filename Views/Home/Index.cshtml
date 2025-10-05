@@ -11,9 +11,46 @@
     <h1>PreguntadORT</h1>
     <div>
        <a href='@Url.Action("ConfigurarJuego")'>Empezar</a><br>
-       <a href="">Créditos</a>
+       <a href="" id="creditos">Créditos</a>
+      <a href="" id="instrucciones">Instrucciones</a>
+
     </div>
     </section>
+    <div class="cuadro" id="credi">
+    <h3>Hecho por:</h3>
+    <h3>Juana Lopez Valenzuela</h3>
+    <h3>Iara Szwarstein</h3>
+    <button id="cerrarCreditos">Cerrar</button>
+</div>
+    <div class="cuadro" id="instru">
+    <h2>¿Como jugar?</h2>
+    <h3>A continuación vas a poder elegir la dificultad y categoria de tus preguntas, una vez iniciado el juego vas a tener que hacer click en la repsuesta correcta. </h3>
+  <h3>¡Buena suerte!</h3>
+    <h4>TIP: Cuanto mas dificil la dificultad más puntos sumas!</h4>
+    <button id="cerrarInstru">Cerrar</button>
+</div>
 </main>
 
 </body>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+ document.getElementById("creditos").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("credi").style.display = "block";
+    });
+        document.getElementById("cerrarCreditos").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("credi").style.display = "none";
+
+    });
+  });
+   document.getElementById("instrucciones").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("instru").style.display = "block";
+    });
+     document.getElementById("cerrarInstru").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("instru").style.display = "none";
+
+    });
+</script>
