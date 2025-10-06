@@ -4,9 +4,9 @@ GO
 CREATE DATABASE [PreguntadOrt]
  CONTAINMENT = NONE
  ON  PRIMARY 
-( NAME = N'PreguntadOrt', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS01\MSSQL\DATA\PreguntadOrt.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+( NAME = N'PreguntadOrt', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\PreguntadOrt.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
  LOG ON 
-( NAME = N'PreguntadOrt_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.SQLEXPRESS01\MSSQL\DATA\PreguntadOrt_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+( NAME = N'PreguntadOrt_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL14.MSSQLSERVER\MSSQL\DATA\PreguntadOrt_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
 GO
 ALTER DATABASE [PreguntadOrt] SET COMPATIBILITY_LEVEL = 140
 GO
@@ -265,6 +265,9 @@ GO
 ALTER DATABASE [PreguntadOrt] SET  READ_WRITE 
 GO
 
+
+USE [PreguntadOrt];
+GO
 -- =============================================
 -- Insertar categorías iniciales
 -- =============================================
@@ -289,6 +292,7 @@ GO
 
 USE [PreguntadOrt];
 GO
+DBCC CHECKIDENT ('Preguntas', RESEED, 1);
 
 -- Preguntas Cultura General
 INSERT INTO Preguntas (idCategoria, idDificultad, enunciado, foto)
@@ -315,49 +319,51 @@ VALUES
 (1,1,'¿Qué país es conocido como la cuna del sushi?',NULL);
 GO
 
+USE [PreguntadOrt];
+GO
 -- Respuestas Cultura General con opciones mezcladas
-INSERT INTO Respuestas (idPregunta, Opcion, contenido, correcta)
+INSERT INTO Respuestas (idPregunta, Opcion, contenido, correcta, fotoRES)
 VALUES
 -- Pregunta 1
-(1,1,'Oro',0),(1,2,'Litio',1),(1,3,'Hierro',0),(1,4,'Plata',0),
+(1,1,'Oro',0, NULL),(1,2,'Litio',1, NULL),(1,3,'Hierro',0, NULL),(1,4,'Plata',0, NULL),
 -- Pregunta 2
-(2,1,'Dióxido de carbono',0),(2,2,'Hidrógeno',0),(2,3,'Oxígeno',1),(2,4,'Nitrógeno',0),
+(2,1,'Dióxido de carbono',0, NULL),(2,2,'Hidrógeno',0, NULL),(2,3,'Oxígeno',1, NULL),(2,4,'Nitrógeno',0, NULL),
 -- Pregunta 3
-(3,1,'Violín',0),(3,2,'Piano',1),(3,3,'Batería',0),(3,4,'Guitarra',0),
+(3,1,'Violín',0, NULL),(3,2,'Piano',1, NULL),(3,3,'Batería',0, NULL),(3,4,'Guitarra',0, NULL),
 -- Pregunta 4
-(4,1,'Tierra',0),(4,2,'Marte',0),(4,3,'Mercurio',1),(4,4,'Venus',0),
+(4,1,'Tierra',0, NULL),(4,2,'Marte',0, NULL),(4,3,'Mercurio',1, NULL),(4,4,'Venus',0, NULL),
 -- Pregunta 5
-(5,1,'Miguel Ángel',0),(5,2,'Picasso',0),(5,3,'Leonardo da Vinci',1),(5,4,'Van Gogh',0),
+(5,1,'Miguel Ángel',0, NULL),(5,2,'Picasso',0, NULL),(5,3,'Leonardo da Vinci',1, NULL),(5,4,'Van Gogh',0, NULL),
 -- Pregunta 6
-(6,1,'Bombilla',0),(6,2,'Teléfono',1),(6,3,'Reloj',0),(6,4,'Avión',0),
+(6,1,'Bombilla',0, NULL),(6,2,'Teléfono',1, NULL),(6,3,'Reloj',0, NULL),(6,4,'Avión',0, NULL),
 -- Pregunta 7
-(7,1,'Sídney',0),(7,2,'Perth',0),(7,3,'Melbourne',0),(7,4,'Canberra',1),
+(7,1,'Sídney',0, NULL),(7,2,'Perth',0, NULL),(7,3,'Melbourne',0, NULL),(7,4,'Canberra',1, NULL),
 -- Pregunta 8
-(8,1,'Alemania',0),(8,2,'Países Bajos',1),(8,3,'Dinamarca',0),(8,4,'Bélgica',0),
+(8,1,'Alemania',0, NULL),(8,2,'Países Bajos',1, NULL),(8,3,'Dinamarca',0, NULL),(8,4,'Bélgica',0, NULL),
 -- Pregunta 9
-(9,1,'1995',0),(9,2,'1989',1),(9,3,'1991',0),(9,4,'1987',0),
+(9,1,'1995',0, NULL),(9,2,'1989',1, NULL),(9,3,'1991',0, NULL),(9,4,'1987',0, NULL),
 -- Pregunta 10
-(10,1,'Mayas',0),(10,2,'Aztecas',0),(10,3,'Incas',1),(10,4,'Egipcios',0),
+(10,1,'Mayas',0, NULL),(10,2,'Aztecas',0, NULL),(10,3,'Incas',1, NULL),(10,4,'Egipcios',0, NULL),
 -- Pregunta 11
-(11,1,'Nikola Tesla',0),(11,2,'Albert Einstein',1),(11,3,'Galileo Galilei',0),(11,4,'Isaac Newton',0),
+(11,1,'Nikola Tesla',0, NULL),(11,2,'Albert Einstein',1, NULL),(11,3,'Galileo Galilei',0, NULL),(11,4,'Isaac Newton',0, NULL),
 -- Pregunta 12
-(12,1,'Yangtsé',0),(12,2,'Misisipi',0),(12,3,'Nilo',1),(12,4,'Amazonas',0),
+(12,1,'Yangtsé',0, NULL),(12,2,'Misisipi',0, NULL),(12,3,'Nilo',1, NULL),(12,4,'Amazonas',0, NULL),
 -- Pregunta 13
-(13,1,'Empanada',0),(13,2,'Pizza',1),(13,3,'Sushi',0),(13,4,'Pan',0),
+(13,1,'Empanada',0, NULL),(13,2,'Pizza',1, NULL),(13,3,'Sushi',0, NULL),(13,4,'Pan',0, NULL),
 -- Pregunta 14
-(14,1,'Gabriel García Márquez',0),(14,2,'J.K. Rowling',0),(14,3,'Homer',0),(14,4,'Miguel de Cervantes',1),
+(14,1,'Gabriel García Márquez',0, NULL),(14,2,'J.K. Rowling',0, NULL),(14,3,'Homer',0, NULL),(14,4,'Miguel de Cervantes',1, NULL),
 -- Pregunta 15
-(15,1,'Cobre',1),(15,2,'Oro',0),(15,3,'Plata',0),(15,4,'Hierro',0), -- ya estaba mezclada
+(15,1,'Cobre',1, NULL),(15,2,'Oro',0, NULL),(15,3,'Plata',0, NULL),(15,4,'Hierro',0, NULL), -- ya estaba mezclada
 -- Pregunta 16
-(16,1,'Índico',0),(16,2,'Ártico',0),(16,3,'Pacífico',1),(16,4,'Atlántico',0),
+(16,1,'Índico',0, NULL),(16,2,'Ártico',0, NULL),(16,3,'Pacífico',1, NULL),(16,4,'Atlántico',0, NULL),
 -- Pregunta 17
-(17,1,'Berlín',0),(17,2,'París',1),(17,3,'Londres',0),(17,4,'Roma',0),
+(17,1,'Berlín',0, NULL),(17,2,'París',1, NULL),(17,3,'Londres',0, NULL),(17,4,'Roma',0, NULL),
 -- Pregunta 18
-(18,1,'La noche estrellada',1),(18,2,'Guernica',0),(18,3,'La última cena',0),(18,4,'El grito',0), -- ya mezclada
+(18,1,'La noche estrellada',1, NULL),(18,2,'Guernica',0, NULL),(18,3,'La última cena',0, NULL),(18,4,'El grito',0, NULL), -- ya mezclada
 -- Pregunta 19
-(19,1,'CO2',0),(19,2,'H2O',1),(19,3,'O2',0),(19,4,'NaCl',0),
+(19,1,'CO2',0, NULL),(19,2,'H2O',1, NULL),(19,3,'O2',0, NULL),(19,4,'NaCl',0, NULL),
 -- Pregunta 20
-(20,1,'Tailandia',0),(20,2,'Japón',1),(20,3,'China',0),(20,4,'Corea',0);
+(20,1,'Tailandia',0, NULL),(20,2,'Japón',1, NULL),(20,3,'China',0, NULL),(20,4,'Corea',0, NULL);
 GO
 
 USE [PreguntadOrt];
@@ -390,6 +396,8 @@ VALUES
 (2,3,'¿Cuál fue la principal causa de la Guerra de los Cien Años?',NULL),
 (2,3,'¿Qué conflicto enfrentó a Estados Unidos y la Unión Soviética tras la Segunda Guerra Mundial?',NULL),
 (2,3,'¿Quién fue el último emperador de Rusia antes de la revolución de 1917?',NULL);
+GO
+USE [PreguntadOrt];
 GO
 
 -- Respuestas Historia (opciones mezcladas)
@@ -468,6 +476,8 @@ VALUES
 (3,2,'¿Qué cantante británico lanzó el álbum "Divide"?',NULL),
 (3,2,'¿En qué película aparece el personaje Forrest Gump?',NULL);
 GO
+USE [PreguntadOrt];
+GO
 
 -- Respuestas Entretenimiento y Música (opciones mezcladas)
 INSERT INTO Respuestas (idPregunta, Opcion, contenido, correcta)
@@ -541,6 +551,9 @@ VALUES
 (4,3,'¿Cuál es la capital de Italia?',NULL),
 (4,3,'¿A qué país pertenece esta bandera?', 'italia.jpg');
 GO
+USE [PreguntadOrt];
+GO
+
 -- Respuestas Países y Banderas (opciones mezcladas)
 INSERT INTO Respuestas (idPregunta, Opcion, contenido, correcta)
 VALUES
